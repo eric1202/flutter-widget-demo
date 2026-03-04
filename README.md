@@ -44,12 +44,12 @@
 
 ### Flutter vs 原生开发参考
 
-| 特性 | Flutter | 原生开发 (Android/iOS) |
-| :--- | :--- | :--- |
-| **开发效率** | **极高**：得益于“热重载”技术，UI 修改几乎可以秒级呈现，大幅缩短调试时间。 | **中等**：每次修改 UI 通常需要重新编译运行，反馈周期较长。 |
-| **UI 一致性** | **完美统一**：使用自绘引擎渲染，在不同机型和系统版本上能保持高度一致的视觉效果。 | **存在差异**：需适配不同平台的原生组件库，处理系统差异的工作量大。 |
-| **性能表现** | **非常流畅**：通过 Skia/Impeller 引擎直接与 GPU 通信，能实现 60/120fps 的丝滑动画。 | **极致性能**：由于直接调用系统底层 API，在处理极端复杂的重负载任务时仍具优势。 |
-| **代码复用** | **单一代码库**：逻辑与 UI 均可 90% 以上复用，大幅降低维护成本。 | **双倍工作量**：通常需要维护两套甚至多套代码，团队协作成本较高。 |
+| 特性          | Flutter                                                                             | 原生开发 (Android/iOS)                                                         |
+| :------------ | :---------------------------------------------------------------------------------- | :----------------------------------------------------------------------------- |
+| **开发效率**  | **极高**：得益于“热重载”技术，UI 修改几乎可以秒级呈现，大幅缩短调试时间。           | **中等**：每次修改 UI 通常需要重新编译运行，反馈周期较长。                     |
+| **UI 一致性** | **完美统一**：使用自绘引擎渲染，在不同机型和系统版本上能保持高度一致的视觉效果。    | **存在差异**：需适配不同平台的原生组件库，处理系统差异的工作量大。             |
+| **性能表现**  | **非常流畅**：通过 Skia/Impeller 引擎直接与 GPU 通信，能实现 60/120fps 的丝滑动画。 | **极致性能**：由于直接调用系统底层 API，在处理极端复杂的重负载任务时仍具优势。 |
+| **代码复用**  | **单一代码库**：逻辑与 UI 均可 90% 以上复用，大幅降低维护成本。                     | **双倍工作量**：通常需要维护两套甚至多套代码，团队协作成本较高。               |
 
 ### 核心学习经验
 
@@ -67,6 +67,25 @@
 1. 克隆或下载本项目。
 2. 运行 `flutter pub get` 安装依赖。 或者直接运行 `flutter run`
 3. 运行项目，在每个页面中直接阅读源码中的中文注释进行学习。
+
+
+## Web Deployment
+
+This project is configured to automatically deploy to GitHub Pages when you push to the `main` branch.
+
+### Access the Web Page
+Once deployed, you can access the application at:
+`https://<your-username>.github.io/flutter-widget-demo/`
+
+### How to Enable
+1. Push your code to GitHub.
+2. Go to your repository **Settings** -> **Pages**.
+3. Under **Build and deployment** -> **Source**, ensure it's set to **Deploy from a branch**.
+4. Select the `gh-pages` branch and click **Save** (this branch is created automatically by the GitHub Action).
+
+### Technical Details
+- The deployment is handled by `.github/workflows/deploy.yml`.
+- It builds the project with `--base-href /flutter-widget-demo/`.
 
 ---
 

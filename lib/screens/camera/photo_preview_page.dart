@@ -102,14 +102,15 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage>
   // 核心功能: 拍照
   // ==============================================================
   Future<void> _takePicture() async {
-    if (_controller == null || _isTaking) return;
+    if (_controller == null || _isInitialized == false || _isTaking) return;
+
+    // 在 await 之前获取 ScaffoldMessengerState
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
 
     setState(() => _isTaking = true);
 
     try {
       // ★ 核心 API: takePicture()
-      // 返回 XFile 对象，包含照片的临时文件路径
-      // 照片会保存在系统临时目录中
       final XFile image = await _controller!.takePicture();
 
       setState(() {
@@ -120,9 +121,9 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage>
     } on CameraException catch (e) {
       setState(() => _isTaking = false);
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('拍照失败: ${e.description}')));
+        scaffoldMessenger.showSnackBar(
+          SnackBar(content: Text('拍照失败: ${e.description}')),
+        );
       }
     }
   }

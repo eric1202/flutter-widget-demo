@@ -1,10 +1,10 @@
 # Flutter 基础组件学习 Demo
 
-这是一个专为 Flutter 初学者设计的学习项目，重点展示了三大核心组件的使用方法，并配有极尽详细的**中文注释**。
+这是一个专为 Flutter 初学者设计的学习项目，重点展示了核心组件的使用方法，并配有极尽详细的**中文注释**。
 
 ## 学习模块详解
 
-项目包含了以下三个核心教学页面，旨在帮助开发者快速掌握组件的声明式属性配置：
+项目包含了以下核心教学页面，旨在帮助开发者快速掌握组件的声明式属性配置：
 
 1. **Container 详解** (`lib/screens/container_screen.dart`)
    - **核心理解**：`Container` 类似于 HTML 中的 `div`，是 Flutter 中最常用的“万能装饰盒”。
@@ -30,13 +30,34 @@
      - 深入自定义 `ButtonStyle`：利用 `WidgetStateProperty` 打造响应式的动态交互外观。
    - **心得**：解耦按钮样式与逻辑，善用 `ThemeData` 统一全局按钮风格。
 
-4. **ListView 详解** (`lib/screens/list_screen.dart`)
+4. **Layout 多子布局详解** (`lib/screens/layout_screen.dart`)
+   - **核心理解**：UI 界面是由多个组件拼接而成的，了解如何控制组件间的相对位置是排版的核心。
+   - **核心要点**：
+     - `Row` 和 `Column`：基础横向与纵向排列，掌握主轴和交叉轴的对齐控制。
+     - `Expanded`：分配剩余空间，防溢出必备。
+     - `Stack` 和 `Positioned`：实现层叠排版与绝对定位。
+     - `Wrap`：流式自动换行布局。
+     - `Spacer`：占据可用空间的“弹簧组件”，推开横向或纵向两边的元素。
+     - `Card`：带圆角和阴影的 Material 风格容器（默认不带内边距，需配合 `Padding`）。
+     - 综合实战：Row + Column + Expanded 构建防溢出的图文卡片列表项。
+   - **心得**：遇到组件超出版面报错（黄黑相间警告条纹）时，通常是外层没有明确的约束。尝试为内容定宽/定高，或者使用 `Expanded` 接管剩余空间，长列表/长页面可以嵌套在 `SingleChildScrollView` 中。
+
+5. **ListView 详解** (`lib/screens/list_screen.dart`)
    - **核心理解**：列表是移动端最常见的高性能数据展示方案。
    - **关键模式**：
      - **基础用法**：适用于静态、短小的数据集合。
      - **Builder 模式**：**核心必学**。掌握基于索引的懒加载机制，轻松应对成千上万条记录。
      - **Separated 模式**：学习利用 `separatorBuilder` 在项之间插入分割线或间距。
    - **心得**：在处理列表时，务必注意 `itemExtent` 或 `prototypeItem` 的优化，以显著提升无限列表的滚动性能。
+
+6. **Camera 相机功能** (`lib/screens/camera_screen.dart`)
+   - **核心理解**：相机是移动端常见的硬件交互场景，Flutter 通过插件方式调用原生能力。
+   - **实践内容**：
+     - 基础相机预览与拍照功能 (`basic_camera_page.dart`)。
+     - 拍照后的照片预览 (`photo_preview_page.dart`)。
+     - 自定义相机界面 (`custom_camera_page.dart`)。
+     - 二维码扫描功能 (`qr_scanner_page.dart`)。
+   - **心得**：相机功能涉及设备权限管理 (`permission_handler`)，是学习 Flutter 与原生平台交互的好起点。
 
 ## 学习心得与原生对比
 
@@ -57,35 +78,63 @@
 2. **组合优于继承**：在 Flutter 中，几乎一切皆 Widget。学会将复杂 UI 拆解成细小的组件进行组合，会让代码结构异常清晰。
 3. **不要惧怕原生**：虽然 Flutter 很强大，但在涉及相机、蓝牙或特定硬件交互时，了解如何编写 `MethodChannel` 调用原生能力依然非常重要。
 
+## 项目结构
+
+```
+lib/
+├── main.dart                          # 应用入口，主页面导航
+└── screens/
+    ├── container_screen.dart          # Container 组件详解
+    ├── text_screen.dart               # Text 组件详解
+    ├── button_screen.dart             # Button 组件详解
+    ├── layout_screen.dart             # Layout 多子布局详解
+    ├── list_screen.dart               # ListView 组件详解
+    ├── camera_screen.dart             # 相机功能入口
+    └── camera/
+        ├── basic_camera_page.dart     # 基础相机
+        ├── custom_camera_page.dart    # 自定义相机界面
+        ├── photo_preview_page.dart    # 照片预览
+        └── qr_scanner_page.dart       # 二维码扫描
+```
+
 ## 运行环境
 
 - Flutter SDK (推荐最新稳定版)
-- Dart SDK
+- Dart SDK ^3.10.7
 
 ## 如何使用
 
-1. 克隆或下载本项目。
-2. 运行 `flutter pub get` 安装依赖。 或者直接运行 `flutter run`
-3. 运行项目，在每个页面中直接阅读源码中的中文注释进行学习。
+```bash
+# 1. 克隆项目
+git clone <repository-url>
+
+# 2. 安装依赖
+flutter pub get
+
+# 3. 运行项目
+flutter run
+```
+
+在每个页面中直接阅读源码中的中文注释进行学习。
 
 
-## Web Deployment
+## Web 部署
 
-This project is configured to automatically deploy to GitHub Pages when you push to the `main` branch.
+项目已配置 GitHub Actions，推送到 `main` 分支时会自动部署到 GitHub Pages。
 
-### Access the Web Page
-Once deployed, you can access the application at:
-`https://<your-username>.github.io/flutter-widget-demo/`
+### 访问地址
+部署完成后，可通过以下地址访问：
+`https://eric1202.github.io/flutter-widget-demo/`
 
-### How to Enable
-1. Push your code to GitHub.
-2. Go to your repository **Settings** -> **Pages**.
-3. Under **Build and deployment** -> **Source**, ensure it's set to **Deploy from a branch**.
-4. Select the `gh-pages` branch and click **Save** (this branch is created automatically by the GitHub Action).
+### 如何启用
+1. 将代码推送到 GitHub。
+2. 进入仓库 **Settings** -> **Pages**。
+3. 在 **Build and deployment** -> **Source** 中，选择 **Deploy from a branch**。
+4. 选择 `gh-pages` 分支并点击 **Save**（该分支由 GitHub Action 自动创建）。
 
-### Technical Details
-- The deployment is handled by `.github/workflows/deploy.yml`.
-- It builds the project with `--base-href /flutter-widget-demo/`.
+### 技术细节
+- 部署由 `.github/workflows/deploy.yml` 处理。
+- 构建时使用 `--base-href /flutter-widget-demo/`。
 
 ---
 

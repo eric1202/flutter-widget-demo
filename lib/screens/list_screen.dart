@@ -28,7 +28,7 @@ class ListScreen extends StatelessWidget {
             Expanded(
               child: TabBarView(
                 children: [
-                  _buildBasicList(),
+                  _buildBasicList(context),
                   _buildBuilderList(),
                   _buildSeparatedList(),
                   Column(
@@ -49,10 +49,10 @@ class ListScreen extends StatelessWidget {
 
   /// 1. 基础用法：适用于子组件较少的场景
   /// 这种方式会一次性加载所有子组件，数据量大时会有性能问题
-  Widget _buildBasicList() {
+  Widget _buildBasicList(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(16),
-      children: const [
+      children: [
         ListTile(
           leading: Icon(Icons.star, color: Colors.orange),
           title: Text('基础内容 1'),
@@ -69,6 +69,26 @@ class ListScreen extends StatelessWidget {
           leading: Icon(Icons.star, color: Colors.orange),
           title: Text('基础内容 3'),
           subtitle: Text('可以包含任何 Widget'),
+        ),
+        //borderRow
+        Container(
+          decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+          child: Row(
+            children: [
+              Icon(Icons.star, color: Colors.orange),
+              Text('基础内容 4'),
+              Text('基础内容 5'),
+              //spacer
+              Spacer(),
+              //button click back to home
+              IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ], // Row 的 children 结束
+          ), // Row 结束
         ),
         // 甚至可以在列表里放一张图片或一个容器
         Card(
@@ -97,15 +117,19 @@ class ListScreen extends StatelessWidget {
           subtitle: Text('这是通过 builder 实时构建的第 $index 个组件'),
           trailing: const Icon(Icons.arrow_forward_ios, size: 16),
           onTap: () {
+            // 获取 ScaffoldMessengerState，避免在回调中使用可能已失效的 context
+            final scaffoldMessenger = ScaffoldMessenger.of(context);
+            
             // 点击交互, 上方弹窗一个自定义toast 提示index 2s 后dissmiss
-            ScaffoldMessenger.of(context).showSnackBar(
+            scaffoldMessenger.showSnackBar(
               SnackBar(
                 content: Text('点击了第 $index 个项目'),
                 duration: const Duration(seconds: 2),
                 action: SnackBarAction(
                   label: '取消',
                   onPressed: () {
-                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                    // 使用之前捕获的 scaffoldMessenger
+                    scaffoldMessenger.hideCurrentSnackBar();
                   },
                 ),
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/container_screen.dart';
 import 'screens/text_screen.dart';
 import 'screens/button_screen.dart';
+import 'screens/layout_screen.dart';
 import 'screens/list_screen.dart';
 import 'screens/camera_screen.dart';
 
@@ -83,6 +84,14 @@ class HomePage extends StatelessWidget {
             title: 'Button (按钮)',
             subtitle: '类比 iOS: UIButton',
             destination: const ButtonScreen(),
+          ),
+          const SizedBox(height: 12),
+          _buildMenuTile(
+            context,
+            icon: Icons.layers,
+            title: 'Layout (多子布局)',
+            subtitle: 'Row, Column, Stack',
+            destination: const LayoutScreen(),
           ),
           const SizedBox(height: 12),
           _buildMenuTile(

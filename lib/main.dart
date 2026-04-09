@@ -4,6 +4,10 @@ import 'screens/text_screen.dart';
 import 'screens/button_screen.dart';
 import 'screens/layout_screen.dart';
 import 'screens/list_screen.dart';
+import 'screens/image_screen.dart';
+import 'screens/icon_screen.dart';
+import 'screens/textfield_screen.dart';
+import 'screens/dialog_screen.dart';
 import 'screens/camera_screen.dart';
 
 // 这是flutter项目的入口
@@ -100,6 +104,38 @@ class HomePage extends StatelessWidget {
             title: 'ListView (列表)',
             subtitle: '类比 iOS: UITableView',
             destination: const ListScreen(),
+          ),
+          const SizedBox(height: 12),
+          _buildMenuTile(
+            context,
+            icon: Icons.image,
+            title: 'Image (图片)',
+            subtitle: '类比 iOS: UIImageView',
+            destination: const ImageScreen(),
+          ),
+          const SizedBox(height: 12),
+          _buildMenuTile(
+            context,
+            icon: Icons.insert_emoticon,
+            title: 'Icon (图标)',
+            subtitle: '类比 iOS: SFSymbols',
+            destination: const IconScreen(),
+          ),
+          const SizedBox(height: 12),
+          _buildMenuTile(
+            context,
+            icon: Icons.input,
+            title: 'TextField (输入框)',
+            subtitle: '类比 iOS: UITextField',
+            destination: const TextFieldScreen(),
+          ),
+          const SizedBox(height: 12),
+          _buildMenuTile(
+            context,
+            icon: Icons.chat_bubble_outline,
+            title: 'Dialog (弹窗)',
+            subtitle: '类比 iOS: UIAlertController',
+            destination: const DialogScreen(),
           ),
           const SizedBox(height: 12),
           _buildMenuTile(

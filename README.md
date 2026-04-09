@@ -50,7 +50,38 @@
      - **Separated 模式**：学习利用 `separatorBuilder` 在项之间插入分割线或间距。
    - **心得**：在处理列表时，务必注意 `itemExtent` 或 `prototypeItem` 的优化，以显著提升无限列表的滚动性能。
 
-6. **Camera 相机功能** (`lib/screens/camera_screen.dart`)
+6. **Image 详解** (`lib/screens/image_screen.dart`)
+   - **核心理解**：丰富视觉体验的核心，理解本地/网络图片的加载机制。
+   - **核心要点**：
+     - 使用 `Image.network` 加载网络图片以及 `Image.asset` 加载本地资产资源。
+     - 学习 `BoxFit` 填充模式：cover, contain, fill 的应用场景。
+     - 了解圆形图片（如头像）的快速实现方案（如 `ClipOval` 或 `CircleAvatar`）。
+   - **心得**：大量网络图片建议配合三方库如 `cached_network_image` 以增加缓存提升体验。
+
+7. **Icon 详解** (`lib/screens/icon_screen.dart`)
+   - **核心理解**：灵活可缩放的矢量图形系统。
+   - **核心要点**：
+     - 使用系统内置 `Icons` 及配置图标大小和颜色的基础方法。
+     - 特殊用法如结合 `IconButton` 实现带点击态的交互组件。
+   - **心得**：图标本质也是字体（IconFont），支持和 `Text` 类似的无损缩放。
+
+8. **TextField 详解** (`lib/screens/textfield_screen.dart`)
+   - **核心理解**：用户输入和表单交互的基础，实现强交互界面的必备组件。
+   - **核心要点**：
+     - 运用 `InputDecoration` 丰富输入框样式（如提示词 hint、边框、前后缀图标）。
+     - 通过 `TextEditingController` 读取与控制输入文本内容。
+     - 键盘类型控制（`keyboardType`）和密码框切换（`obscureText`）。
+   - **心得**：输入框通常需要关联软键盘，可通过包裹 `GestureDetector` 点击屏幕空白处让输入框失去焦点以收起键盘。
+
+9. **Dialog 详解** (`lib/screens/dialog_screen.dart`)
+   - **核心理解**：页面层之上的覆盖层，用于提示、确认及轻量交互。
+   - **核心要点**：
+     - 学习 `showDialog` 调用标准警示框 `AlertDialog`。
+     - 了解底部浮现的半屏弹窗 `showModalBottomSheet`。
+     - 使用 `SnackBar` 呈现不打断用户操作的瞬息提示。
+   - **心得**：弹窗本质上是开了一个新的局部路由（Route），因此关闭弹窗需要调用 `Navigator.pop(context)`。
+
+10. **Camera 相机功能** (`lib/screens/camera_screen.dart`)
    - **核心理解**：相机是移动端常见的硬件交互场景，Flutter 通过插件方式调用原生能力。
    - **实践内容**：
      - 基础相机预览与拍照功能 (`basic_camera_page.dart`)。
@@ -89,6 +120,10 @@ lib/
     ├── button_screen.dart             # Button 组件详解
     ├── layout_screen.dart             # Layout 多子布局详解
     ├── list_screen.dart               # ListView 组件详解
+    ├── image_screen.dart              # Image 组件详解
+    ├── icon_screen.dart               # Icon 组件详解
+    ├── textfield_screen.dart          # TextField 组件详解
+    ├── dialog_screen.dart             # Dialog 弹窗详解
     ├── camera_screen.dart             # 相机功能入口
     └── camera/
         ├── basic_camera_page.dart     # 基础相机

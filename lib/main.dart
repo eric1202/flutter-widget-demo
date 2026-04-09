@@ -9,6 +9,7 @@ import 'screens/icon_screen.dart';
 import 'screens/textfield_screen.dart';
 import 'screens/dialog_screen.dart';
 import 'screens/camera_screen.dart';
+import 'screens/pdf_study_screen.dart';
 
 // 这是flutter项目的入口
 void main() {
@@ -144,6 +145,14 @@ class HomePage extends StatelessWidget {
             title: 'Camera (相机)',
             subtitle: '类比 iOS: AVCaptureSession',
             destination: const CameraScreen(),
+          ),
+          const SizedBox(height: 12),
+          _buildMenuTile(
+            context,
+            icon: Icons.picture_as_pdf,
+            title: 'PDF 组件详解析 (A-Z)',
+            subtitle: '基于《Flutter 组件详解.pdf》',
+            destination: const PdfStudyScreen(),
           ),
         ],
       ),

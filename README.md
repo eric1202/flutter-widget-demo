@@ -88,7 +88,15 @@
      - 拍照后的照片预览 (`photo_preview_page.dart`)。
      - 自定义相机界面 (`custom_camera_page.dart`)。
      - 二维码扫描功能 (`qr_scanner_page.dart`)。
-   - **心得**：相机功能涉及设备权限管理 (`permission_handler`)，是学习 Flutter 与原生平台交互的好起点。
+    - **心得**：相机功能涉及设备权限管理 (`permission_handler`)，是学习 Flutter 与原生平台交互的好起点。
+
+11. **PDF 组件学习 (A-Z)** (`lib/screens/pdf_study_screen.dart`)
+    - **核心理解**：基于专业文档分类的学习索引。
+    - **核心要点**：
+      - 严格按照 A-Z 字母顺序编排的 100+ 核心组件全集。
+      - 提供快速搜索功能，可根据组件名即时定位。
+      - 配合外部 PDF 文档学习每个组件的参数与避坑指南。
+    - **心得**：此模块作为“速查词典”，适合在日常开发中随时翻阅，加深对组件全貌的理解。
 
 ## 学习心得与原生对比
 
@@ -130,6 +138,7 @@ lib/
         ├── custom_camera_page.dart    # 自定义相机界面
         ├── photo_preview_page.dart    # 照片预览
         └── qr_scanner_page.dart       # 二维码扫描
+    └── pdf_study_screen.dart          # PDF 组件 A-Z 学习索引
 ```
 
 ## 运行环境
